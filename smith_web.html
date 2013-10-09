@@ -11,25 +11,10 @@
 
   <body>
     <div style="width:600px; height:400px" id="map"></div>
-    <p>Date: <input type="text" id="datepicker" /></p>
+    <!-- <p>Date: <input type="text" id="datepicker" /></p> -->
   </body>
 
   <script type='text/javascript'>
-
-    $(function() {
-      $( "#datepicker" ).datepicker
-       ({
-        dateFormat:'@' 
-      });
-
-      });
-
-      $( "#datepicker" ).change(function(){
-
-        var date = $( "#datepicker" ).val() / 1000;
-        alert(date);
-      });
- 
      
     function doStuff (lat, long, time) {
         alert(lat + "," + long + "," + time);
@@ -50,7 +35,11 @@
               .setLatLng(e.latlng)
               .setContent("You clicked the map at " + e.latlng.toString())
               .openOn(map);
-              doStuff(e.latlng.lat, e.latlng.lng, "2312489248-234");
+              now = new Date()  
+              time = Math.round(now.getTime()/1000)
+              
+              doStuff(e.latlng.lat, e.latlng.lng, time)
+              ;
       }
       map.on('click', onMapClick);
 
